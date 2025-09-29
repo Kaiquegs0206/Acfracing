@@ -1,0 +1,33 @@
+{
+  "name": "automotive-workshop-game",
+  "version": "1.0.0",
+  "description": "Jogo 2D de oficina automotiva desenvolvido com Phaser 3",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve . -l 3000",
+    "build": "echo 'No build step required for this project'",
+    "deploy": "echo 'Deploy to Vercel'"
+  },
+  "keywords": [
+    "game",
+    "phaser",
+    "javascript",
+    "2d",
+    "automotive",
+    "workshop"
+  ],
+  "author": "Kaique Gomes",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kaiquegs0206/Acfracing.git"
+  },
+  "homepage": "https://acfracing.vercel.app",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

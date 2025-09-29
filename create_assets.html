@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Assets Placeholder</title>
+</head>
+<body>
+    <h1>Criando Assets Placeholder...</h1>
+    <div id="status"></div>
+    
+    <script>
+        // Função para criar imagem placeholder
+        function createPlaceholderImage(text, width, height, color) {
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            
+            // Fundo
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, width, height);
+            
+            // Borda
+            ctx.strokeStyle = '#2c3e50';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(0, 0, width, height);
+            
+            // Texto
+            ctx.fillStyle = '#ecf0f1';
+            ctx.font = 'bold 16px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, width / 2, height / 2);
+            
+            return canvas.toDataURL('image/png');
+        }
+        
+        // Função para baixar imagem
+        function downloadImage(dataUrl, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = dataUrl;
+            link.click();
+        }
+        
+        // Cria e baixa os assets
+        function createAssets() {
+            const status = document.getElementById('status');
+            
+            // Carros
+            const cars = [
+                { name: 'Fusca', color: '#FF0000' },
+                { name: 'Kombi', color: '#00FF00' },
+                { name: 'Brasília', color: '#0000FF' },
+                { name: 'Opala', color: '#FFFF00' },
+                { name: 'Monza', color: '#FF00FF' }
+            ];
+            
+            cars.forEach((car, index) => {
+                const image = createPlaceholderImage(car.name, 100, 60, car.color);
+                downloadImage(image, `car_0${index + 1}.png`);
+            });
+            
+            // UI Elements
+            const buttonImage = createPlaceholderImage('Button', 100, 40, '#3498db');
+            downloadImage(buttonImage, 'ui/button.png');
+            
+            const panelImage = createPlaceholderImage('Panel', 200, 150, '#34495e');
+            downloadImage(panelImage, 'ui/panel.png');
+            
+            status.innerHTML = 'Assets criados com sucesso! Verifique a pasta de downloads.';
+        }
+        
+        // Executa quando a página carrega
+        window.onload = createAssets;
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

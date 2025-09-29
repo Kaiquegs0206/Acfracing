@@ -1,0 +1,85 @@
+[
+  {
+    "id": "car_01",
+    "name": "Fusca 1970",
+    "image": "car_01.png",
+    "price_base": 5000,
+    "buy_price": 2000,
+    "condition": 45,
+    "baseTopSpeed": 120,
+    "baseAcceleration": 8,
+    "baseHandling": 6,
+    "engineLevel": 1,
+    "tiresLevel": 1,
+    "suspensionLevel": 1,
+    "paint": "#FF0000"
+  },
+  {
+    "id": "car_02",
+    "name": "Kombi 1985",
+    "image": "car_02.png",
+    "price_base": 8000,
+    "buy_price": 3500,
+    "condition": 60,
+    "baseTopSpeed": 100,
+    "baseAcceleration": 6,
+    "baseHandling": 5,
+    "engineLevel": 1,
+    "tiresLevel": 1,
+    "suspensionLevel": 1,
+    "paint": "#00FF00"
+  },
+  {
+    "id": "car_03",
+    "name": "Brasília 1980",
+    "image": "car_03.png",
+    "price_base": 4000,
+    "buy_price": 1500,
+    "condition": 30,
+    "baseTopSpeed": 110,
+    "baseAcceleration": 7,
+    "baseHandling": 7,
+    "engineLevel": 1,
+    "tiresLevel": 1,
+    "suspensionLevel": 1,
+    "paint": "#0000FF"
+  },
+  {
+    "id": "car_04",
+    "name": "Opala 1985",
+    "image": "car_04.png",
+    "price_base": 12000,
+    "buy_price": 6000,
+    "condition": 70,
+    "baseTopSpeed": 140,
+    "baseAcceleration": 9,
+    "baseHandling": 8,
+    "engineLevel": 1,
+    "tiresLevel": 1,
+    "suspensionLevel": 1,
+    "paint": "#FFFF00"
+  },
+  {
+    "id": "car_05",
+    "name": "Monza 1990",
+    "image": "car_05.png",
+    "price_base": 10000,
+    "buy_price": 4500,
+    "condition": 55,
+    "baseTopSpeed": 130,
+    "baseAcceleration": 8,
+    "baseHandling": 7,
+    "engineLevel": 1,
+    "tiresLevel": 1,
+    "suspensionLevel": 1,
+    "paint": "#FF00FF"
+  }
+]
+
+
+
+
+
+
+
+
