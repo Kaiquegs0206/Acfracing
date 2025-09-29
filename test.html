@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste - Oficina Automotiva</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #2c3e50;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #game-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        #game-canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #debug {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="game-canvas"></canvas>
+        <div id="debug">
+            <div>Status: <span id="status">Carregando...</span></div>
+            <div>Phaser: <span id="phaser-status">Verificando...</span></div>
+            <div>Console: <span id="console-status">Verificando...</span></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.70.0/dist/phaser.min.js"></script>
+    <script>
+        console.log('Teste iniciado');
+        
+        // Verifica se Phaser carregou
+        if (typeof Phaser !== 'undefined') {
+            document.getElementById('phaser-status').textContent = 'OK';
+            console.log('Phaser carregado com sucesso');
+        } else {
+            document.getElementById('phaser-status').textContent = 'ERRO';
+            console.error('Phaser não carregou');
+        }
+
+        // Cena de teste simples
+        class TestScene extends Phaser.Scene {
+            constructor() {
+                super({ key: 'TestScene' });
+            }
+
+            create() {
+                console.log('TestScene criada');
+                document.getElementById('status').textContent = 'Funcionando!';
+                
+                // Fundo
+                this.add.rectangle(0, 0, this.scale.width, this.scale.height, 0x2c3e50);
+                
+                // Título
+                this.add.text(this.scale.width / 2, 100, 'TESTE - OFICINA AUTOMOTIVA', {
+                    fontSize: '32px',
+                    color: '#ecf0f1'
+                }).setOrigin(0.5);
+                
+                // Subtítulo
+                this.add.text(this.scale.width / 2, 150, 'Se você está vendo isso, o Phaser está funcionando!', {
+                    fontSize: '18px',
+                    color: '#bdc3c7'
+                }).setOrigin(0.5);
+                
+                // Botão de teste
+                const button = this.add.rectangle(this.scale.width / 2, 250, 200, 50, 0x3498db)
+                    .setStrokeStyle(2, 0x5dade2)
+                    .setInteractive()
+                    .on('pointerdown', () => {
+                        this.add.text(this.scale.width / 2, 350, 'Botão clicado! Phaser funcionando perfeitamente!', {
+                            fontSize: '16px',
+                            color: '#27ae60'
+                        }).setOrigin(0.5);
+                    })
+                    .on('pointerover', () => button.setTint(0x5dade2))
+                    .on('pointerout', () => button.clearTint());
+                
+                this.add.text(this.scale.width / 2, 250, 'CLIQUE AQUI', {
+                    fontSize: '16px',
+                    color: '#ffffff'
+                }).setOrigin(0.5);
+                
+                // Informações
+                this.add.text(this.scale.width / 2, 400, `Resolução: ${this.scale.width}x${this.scale.height}`, {
+                    fontSize: '14px',
+                    color: '#95a5a6'
+                }).setOrigin(0.5);
+                
+                console.log('TestScene criada com sucesso');
+            }
+        }
+
+        // Configuração do Phaser
+        const config = {
+            type: Phaser.AUTO,
+            width: window.innerWidth,
+            height: window.innerHeight,
+            parent: 'game-canvas',
+            backgroundColor: '#2c3e50',
+            scene: [TestScene]
+        };
+
+        // Inicializa o jogo
+        try {
+            const game = new Phaser.Game(config);
+            console.log('Jogo Phaser criado');
+            document.getElementById('console-status').textContent = 'OK';
+        } catch (error) {
+            console.error('Erro ao criar jogo:', error);
+            document.getElementById('status').textContent = 'ERRO: ' + error.message;
+            document.getElementById('console-status').textContent = 'ERRO';
+        }
+    </script>
+</body>
+</html>

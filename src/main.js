@@ -92,10 +92,12 @@ class AutomotiveWorkshopGame {
         this.game = new Phaser.Game(config);
 
         // Inicia a cena imediatamente
-        this.game.scene.start('WorkshopScene', {
-            carManager: this.carManager,
-            uiManager: this.uiManager
-        });
+        setTimeout(() => {
+            this.game.scene.start('WorkshopScene', {
+                carManager: this.carManager,
+                uiManager: this.uiManager
+            });
+        }, 100);
     }
 
     /**
@@ -250,12 +252,36 @@ class AutomotiveWorkshopGame {
 
 // Inicializa o jogo quando a página carrega
 document.addEventListener('DOMContentLoaded', async () => {
-    // Torna o jogo globalmente acessível
-    window.gameInstance = new AutomotiveWorkshopGame();
-    await window.gameInstance.init();
+    console.log('DOM carregado, inicializando jogo...');
     
-    // Torna o UIManager globalmente acessível para os modais
-    window.uiManager = window.gameInstance.uiManager;
+    try {
+        // Torna o jogo globalmente acessível
+        window.gameInstance = new AutomotiveWorkshopGame();
+        await window.gameInstance.init();
+        
+        // Torna o UIManager globalmente acessível para os modais
+        window.uiManager = window.gameInstance.uiManager;
+        
+        console.log('Jogo inicializado com sucesso!');
+    } catch (error) {
+        console.error('Erro ao inicializar jogo:', error);
+        
+        // Fallback: mostra mensagem de erro
+        const errorDiv = document.createElement('div');
+        errorDiv.innerHTML = `
+            <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+                       background: #e74c3c; color: white; padding: 20px; border-radius: 10px; 
+                       text-align: center; z-index: 10000;">
+                <h3>Erro ao carregar o jogo</h3>
+                <p>Recarregue a página ou verifique o console para mais detalhes.</p>
+                <button onclick="location.reload()" style="padding: 10px 20px; margin-top: 10px; 
+                        background: #fff; color: #e74c3c; border: none; border-radius: 5px; cursor: pointer;">
+                    Recarregar
+                </button>
+            </div>
+        `;
+        document.body.appendChild(errorDiv);
+    }
 });
 
 // Adiciona estilos CSS para animações
