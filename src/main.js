@@ -91,12 +91,10 @@ class AutomotiveWorkshopGame {
 
         this.game = new Phaser.Game(config);
 
-        // Aguarda um frame antes de iniciar a cena
-        this.game.events.once('ready', () => {
-            this.game.scene.start('WorkshopScene', {
-                carManager: this.carManager,
-                uiManager: this.uiManager
-            });
+        // Inicia a cena imediatamente
+        this.game.scene.start('WorkshopScene', {
+            carManager: this.carManager,
+            uiManager: this.uiManager
         });
     }
 

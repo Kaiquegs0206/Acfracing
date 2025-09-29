@@ -18,7 +18,11 @@ export class CarManager {
     async loadSampleCars() {
         try {
             const response = await fetch('./sample_cars.json');
-            this.availableCars = await response.json();
+            if (response.ok) {
+                this.availableCars = await response.json();
+            } else {
+                throw new Error('Arquivo não encontrado');
+            }
         } catch (error) {
             console.error('Erro ao carregar carros:', error);
             // Fallback com dados básicos
@@ -37,6 +41,36 @@ export class CarManager {
                     tiresLevel: 1,
                     suspensionLevel: 1,
                     paint: "#FF0000"
+                },
+                {
+                    id: "car_02",
+                    name: "Kombi 1985",
+                    image: "car_02.png",
+                    price_base: 8000,
+                    buy_price: 3500,
+                    condition: 60,
+                    baseTopSpeed: 100,
+                    baseAcceleration: 6,
+                    baseHandling: 5,
+                    engineLevel: 1,
+                    tiresLevel: 1,
+                    suspensionLevel: 1,
+                    paint: "#00FF00"
+                },
+                {
+                    id: "car_03",
+                    name: "Brasília 1980",
+                    image: "car_03.png",
+                    price_base: 4000,
+                    buy_price: 1500,
+                    condition: 30,
+                    baseTopSpeed: 110,
+                    baseAcceleration: 7,
+                    baseHandling: 7,
+                    engineLevel: 1,
+                    tiresLevel: 1,
+                    suspensionLevel: 1,
+                    paint: "#0000FF"
                 }
             ];
         }

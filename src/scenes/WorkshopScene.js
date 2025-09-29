@@ -16,6 +16,10 @@ export class WorkshopScene extends Phaser.Scene {
     }
 
     create() {
+        console.log('WorkshopScene: create() chamado');
+        console.log('CarManager:', this.carManager);
+        console.log('Garage:', this.carManager?.garage);
+        
         // Fundo da oficina
         this.add.rectangle(0, 0, this.scale.width, this.scale.height, 0x2c3e50);
         this.add.text(this.scale.width / 2, 50, 'Oficina - Garagem', {
